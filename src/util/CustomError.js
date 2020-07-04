@@ -1,0 +1,19 @@
+/**
+ * When this error is thrown it sends a reponse with the message you added.
+ * 
+ * Usage:
+ * 
+ * throw new CustomError("File doesn't exists", 404);
+ */
+
+class CustomError extends Error {
+    constructor(message, status,success) {
+         super(message);
+         this.name = this.constructor.name;
+         this.status = status || 400
+         this.success = false
+         
+    }
+}
+
+module.exports = CustomError
