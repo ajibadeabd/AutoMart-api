@@ -9,18 +9,11 @@ import contact from '@/components/contactPage'
 import dashboard from '@/components/dashboard'
 import maintainance from  '@/components/maintainance/maintain.vue'
 import adminDashBoard from  '@/components/adminDashBoard.vue'
-import AdminViewRequest from  '@/components/AdminViewRequest.vue'
-import AdminApprovedRequest from  '@/components/AdminApprovedRequest.vue'
-import AdminRejectedRequest from  '@/components/AdminRejectedRequest.vue'
-import AdminAllRequest from  '@/components/AdminAllRequest.vue'
-import AdminResolvedRequest from '@/components/AdminResolvedRequest.vue'
 import about from '@/components/about.vue'
-import editrequest from '@/components/editrequest.vue'
 import postAds from '@/components/postAds.vue'
 import profileMessage from '@/components/profile-message.vue'
 import seller from '@/components/seller.vue'
-
-
+import profilePage from '@/components/profilePage.vue'
 
 
 Vue.use(Router)
@@ -38,10 +31,15 @@ const router = new Router({
       component: postAds
     },
     {
+      path: '/profilePage',
+      name: 'profilePage',
+      component:profilePage
+    }, 
+    {
       path: '/profile-message',
       name: 'profileMessage',
       component: profileMessage
-    }, 
+    },
     {
       path: '/seller-page',
       name: 'seller',
@@ -103,53 +101,7 @@ const router = new Router({
         requiresAdmin:true
     }
     },
-    {
-      path: '/Admin-View-Request',
-      name: 'AdminViewRequest',
-      component: AdminViewRequest,
-      meta:{
-        requiresAdmin:true
-    }
-    },
-    {
-      path: '/Admin-Approved-Request',
-      name: 'AdminApprovedRequest',
-      component: AdminApprovedRequest,
-      meta:{
-        requiresAdmin:true
-    }
-    },
-    {
-      path: '/Admin-Rejected-Request',
-      name: 'AdminRejectedRequest',
-      component: AdminRejectedRequest,
-      meta:{
-        requiresAdmin:true
-    }
-    },
-    {
-      path: '/Admin-All-Request',
-      name: 'AdminAllRequest',
-      component: AdminAllRequest,
-      meta:{
-        requiresAdmin:true
-    }
-    },
-    {
-      path: '/Admin-Resolved-Request',
-      name: 'AdminResolvedRequest',
-      component: AdminResolvedRequest,
-      meta:{
-        requiresAdmin:true
-    }
-    },
-    {
-      path: '/Edit-Request/:id',
-      name: 'editrequest',
-      component:editrequest,
-      props:true
-
-    },
+    
     
     
   ],

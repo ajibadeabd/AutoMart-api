@@ -5,8 +5,6 @@ var router = express.Router();
 const userController = require('../src/controller/userController')
 const carController = require('../src/controller/carController')
 const orderController = require('../src/controller/orderController')
-const jwt = require('jsonwebtoken')
-// const carController = require('../src/controller/')
 
 /* GET home page. */
 
@@ -20,7 +18,7 @@ router.post(
    userController.sellerSignUp);
 
 
-// login an existing  user     ---4
+// login an existing  user     ---3
 router.post(
   '/signIn',
    userController.login);

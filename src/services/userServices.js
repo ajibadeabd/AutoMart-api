@@ -6,6 +6,8 @@ const jwtSecret = 'secure'
 const CustomError = require('../util/CustomError')
 const response = require('../util/response')
 const {Role} = require('../middleware/userRole')
+const _ = require("lodash");
+
 
 
 class userServices{
@@ -74,15 +76,23 @@ class userServices{
     async login(data,res){
         if(!data.email)  return new CustomError("provide an email", 400,false); 
         if(!data.password) return new CustomError("provide a password", 400,false); 
-        const user =await User.findOne({email:data.email})
+        let user =await User.findOne({email:data.email})
           if(!user) return  new CustomError("no user found", 404,false); 
           const isCorrect = await bcrypt.compare(data.password, user.password);
         if(!isCorrect) return new CustomError("password dont match", 400,false); 
         else{ let payload={ userName:user.userName, _id:user._id,role:user.role, email:user.email,}
         const token = jwt.sign(payload, jwtSecret, {expiresIn: 3600000000000000 });
           const refreshToken = jwt.sign(payload, jwtSecret, {expiresIn: 3600000000000 });
+         
+    user = _.pick(user, [
+      "_id",
+      'userName',
+      "email",
+      "role",
+    ]);
           return{success:true,  status:200, data:{msg:'you suucessfully logged in',
-          user:user.userName,email:user.email,user_Id:user._id,  role:user.role,
+          // user:user.userName,email:user.email,user_Id:user._id,  role:user.role,
+          ...user,
           token:`Bearer ${token}`, refreshToken:`Bearer ${refreshToken}`,}} 
         }
         

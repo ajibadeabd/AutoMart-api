@@ -1,29 +1,27 @@
 const CustomError = require("../util/CustomError");
 const response = require("../util/response")
-
-
-
-module.exports = (app) => {
-     app.use((req, res, next) => {
-          throw new CustomError("Invalid request", 400);
+const errors = [
+     "CastError",
+     "JsonWebTokenError",
+     "ValidationError",
+     "SyntaxError",
+   ];
+   
+   module.exports = (app) => {
+     app.use("*", (req, res) => {
+       res.status(404).send(response("Invalid request", null, false));
      });
-
      app.use((error, req, res, next) => {
-          console.log(error)
-          if (error instanceof CustomError) {
-               res.status(error.status).send(response(error.message, null, false));
-          } else if (error.name == "CastError") {
-               res.status(400).send(response("Invalid id", null, false));
-          } else if (error.name == "JsonWebTokenError") {
-               res.status(400).send(response(error.message, null, false));
-          } else if (error.name == "ValidationError") {
-               res.status(400).send(response(error.message, null, false));
-          } else if (error.name == "SyntaxError") {
-               res.status(400).send(response(error.message, null, false));
-          } else {
-               res.status(500).send(response(error.message, null, false));
-          }
+       console.log(error);
+       if (error instanceof CustomError) {
+         res.status(error.status).send(response(error.message, null, false));
+       } else if (errors.includes(error.name)) {
+         res.status(400).send(response(error.message, null, false));
+       } else {
+         res.status(500).send(response(error.message, null, false));
+       }
      });
-
-     return app
-}
+   
+     return app;
+   };
+   

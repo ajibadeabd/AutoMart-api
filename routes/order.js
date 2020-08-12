@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken')
 // create an order --1
 router.post(
     '/order/:id',
+    passport.authenticate('jwt',{session:false}),
      orderController.createOrder);
   
   // updated a pending order --2

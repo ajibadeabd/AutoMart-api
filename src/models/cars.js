@@ -30,6 +30,9 @@ const CarSchema = new Schema({
     type: String,
     require: true,
   },
+  url: {
+    type: Object
+  },
  body_type: {
     type: String,
   

@@ -1,11 +1,11 @@
-exports.status = {
-    available:'available',
-    sold:'sold',
+exports.status = [
+    'available',
+   ' sold'
     
-}
+]
 
-exports.state = {
-    used:'used',
-    new:'new',
+exports.state = 
+   ['used',
+    'new']
     
-}
+

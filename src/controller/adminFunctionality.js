@@ -1,7 +1,4 @@
 const adminServices = require("../services/adminServices")
-const response = require("../util/response")
-
-
 
 class adminController{
 

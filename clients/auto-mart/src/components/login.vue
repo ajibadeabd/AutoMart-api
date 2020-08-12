@@ -3,14 +3,20 @@
 
 
 
-   <div class="col s10 m6 l4  offset-l4 offset-s1 offset-m3">
+   <div class="col s10 m8 l6 card xl6 offset-l3 offset-s1 offset-m2 offset-xl3">
+       <!-- <button><i class="material-icons fa fa-google"></i></button>
+        --> <h4 class="green-text">Login</h4>
+        <div class="divider"></div>
+        
         <form @submit.prevent="SignIn"> 
-                     <div class="card">
+                     <div class="s10 offset-s1  offset-l3 offset-xl3 offset-m2 col m8 xl6 l6 ">
             <div class="card-action  white-text">
-                <h3 class="center light-blue-text  ">
-                    <i class="fa fa-sign-in"></i> Login</h3>
+                <!-- <h3 class="center light-blue-text  ">
+                    <i class="fa fa-sign-in"></i> Login</h3> -->
             </div>
             <div class="card-content">
+                <div class="orange  other center white-text"> google</div>
+                <div class="facebook   other center light-blue white-text"> Facebook</div>
                
                 <div class="form-field">
                     <label for="email">Email</label>
@@ -108,5 +114,10 @@ created(){
 <style scoped>
 button{
      border-radius: 30px;
+ }
+ .other{
+border-radius: 15px;
+margin-top:5px;
+height:30px
  }
 </style>

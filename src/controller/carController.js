@@ -1,4 +1,5 @@
 const carServices = require("../services/carServices")
+const response = require("../util/response")
 
 
 
@@ -36,9 +37,11 @@ class carController{
     }
     //get available cars with in same range --5
     async getAvailableCarsWithInAPriceRange(req,res){
-        let  {data ,status,message,success,isAvailable}= 
+        let  {data ,status,message,success}= 
         await carServices.getAvailableCarsWithInAPriceRange(req.body,res)
-        res.status(status).json({data,success,message,isAvailable})
+        res.status(status).json({data,success,message})
+
+
 
         
     }

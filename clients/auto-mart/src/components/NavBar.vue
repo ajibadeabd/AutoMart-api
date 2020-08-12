@@ -36,21 +36,27 @@
           </router-link>
         </li>
        
-          <li  v-if="isUser">
-          <router-link  class="  blue-text" to='/dashboard'>
-            Chect request status
+          <li  >
+          <router-link  class="  blue-text" to='/seller-page'>
+           seller-page
           </router-link>
         </li>
         <li >
-          <router-link v-if="isUser" class="  blue-text" to='/maintainance'>
-            make a request
+          <router-link  class="  blue-text" to='/postAds'>
+            postAds
           </router-link>
         </li>
         <li v-if="!isLoggedIn">
-          <router-link class="blue-text" to='/about'>
-               about
+          <router-link class="blue-text" to='/profile-message'>
+               profile-message
           </router-link>
         </li>
+         <li v-if="!isLoggedIn">
+          <router-link class="blue-text" to='/profilePage'>
+                profilePage
+          </router-link>
+        </li>
+       
     </ul>
     </div>
   </div>

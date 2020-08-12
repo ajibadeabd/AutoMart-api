@@ -12,7 +12,8 @@ class flagServices{
 
     async  report(data,req){
        const car_id =req.params.car_id
-
+    let isValid= mongoose.Types.ObjectId.isValid(`${car_id}`)
+      if(!isValid) return new CustomError("an invalid car id was passed", 400,false);
       if(!data.reason) return new CustomError("specify a reason", 400,false);
       if(!data.description) return new CustomError("enter a description", 400,false);
       if(!car_id) return new CustomError("car id can't be null, please specify it", 400,false); 

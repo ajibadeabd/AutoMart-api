@@ -1,0 +1,604 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "maintainance Tracking  App",
+        "description": "A simple web app for that keep track on each user  maintainance request(approved, reject,pending and resolved",
+        "license": {
+            "name": "MIT"
+        }
+    },
+    "basePath": "",
+    "tags": [
+        {
+            "name": "maintainance-request-Tracker",
+            "description": "For keeping track of maintainance request"
+        }
+    ],
+    "schemes": [
+       
+        "https",
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "components":{
+        "securitySchema":{
+            "bearereAuth":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "security":{
+            "bearerAuth":[]
+        }
+    },
+    "paths": {
+        "/Api/v1/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Users can create an account",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "To create an account",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "you are now logged in",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "400": {
+                        "description": "password incorrect"
+                    },
+                    "400": {
+                        "description": "Username already taken"                        
+                    },
+                    "400": {
+                        "description": "email  already been registerd. did you forget your password"                        
+                    }
+                    
+                }
+            }
+        },
+        "/Api/v1/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                
+                "summary": "Users can  login to access their created account, set token to header authorization to get access to other route",
+               "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "To create an account, if the logged in userType is and admin he will be redirected to the admin dashboard like wise for the user, an access token is also created which last for 15 minute, a refresh token will also be created as well which will last for 2 week to fetch a new access token",
+                    "schema": {
+                        "$ref": "#/definitions/user"
+                    }
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "you are now logged in",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "no email found"
+                    },
+                    "400": {
+                        "description": "incorrect password"                        
+                    }
+                    
+                },
+                "header":{
+                    "X-Rate-Limit":{
+                        "type": "string",
+                        "description": "calls per 15 minute allowed by the user"
+                    },
+                    "X-Expires-After":{
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "date in UTC when token expires"
+                    }
+                    
+                    
+                }
+            }
+        },
+        "/Api/v1/postEachUserRequest": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "post each request by user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "To create a request",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "you are now logged in",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no email found"
+                    },
+                    "400": {
+                        "description": "incorrect password"                        
+                    }
+                    
+                }
+            }
+        },
+        "/Api/v1/getAllRequestsByUser": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "automtically get all request by each user request if user is logged in ",
+                
+                "responses": {
+                    "200": {
+                        "description": "these are all your request",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "user does not exist"
+                    },
+                    "400": {
+                        "description": "bad request"                        
+                    }
+                    
+                }
+            }
+        },
+        "/Api/v1/ApproveRequestsByAdmin/{id}": {
+            "put": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "admin  approving request",
+                "parameters": [
+
+                    {
+                        "description": "ID of request to be approved by admin",
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                        
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "request approved",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "requset does not exist"
+                    }
+                   
+                    
+                }
+            }
+        },
+          "/Api/v1/RejectRequestsByAdmin/{id}": {
+            "put": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "admin reject request  ",
+                "parameters": [
+
+                    {   "type": "string",
+                        "name": "id",
+                        "description": "ID of request to be rejected by admin",
+                        "in": "path",
+                        "required": true
+                       
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "request rejected",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "requset does not exist"
+                    },
+                    "400": {
+                        "description": "bad request"                        
+                    }
+                    
+                }
+            }
+        },
+        "/Api/v1/ResolveRequestsByAdmin/{id}": {
+            "put": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "admin resolve request  ",
+                "parameters": [
+
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "description": "ID of request to be resolved by admin",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "request resolved",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "requset does not exist"
+                    },
+                    "400": {
+                        "description": "bad request"                        
+                    }
+                    
+                }
+            }
+        },
+        "/Api/v1/viewpendingRequestsByAdmin": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "fetch all pending request by admin  ",
+                "responses": {
+                    "200": {
+                        "description": "this are all pending request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    }
+                   
+                    
+                }
+            }
+        },
+        "/Api/v1/viewApprovedRequestsByAdmin": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "fetch all approved request by admin  ",
+                "responses": {
+                    "200": {
+                        "description": "this are all the approved request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    }
+                   
+                    
+                }
+            }
+        },
+        "/Api/v1/viewRejectRequestedsByAdmin": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "fetch all rejected request by admin  ",
+                "responses": {
+                    "200": {
+                        "description": "this are all the rejected request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    }
+                   
+                    
+                }
+            }
+        },
+        "/Api/v1/viewResolvedRequestsByAdmin": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "fetch all resolved request by admin  ",
+                "responses": {
+                    "200": {
+                        "description": "this are all the resolved request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    }
+                   
+                    
+                }
+            }
+        },
+        "/Api/v1/viewAllRequestByAdmin": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "fetch all  request by admin  ",
+                "responses": {
+                    "200": {
+                        "description": "this are all request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    }
+                   
+                    
+                }
+            }
+        },
+        "/Api/v1/eachRequest/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "fetch each request on edit by user  ",
+                "parameters": [
+
+                    {
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "name": "id",
+                        "description": "ID of each request"
+                      
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "this are all request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    },
+                    "400": {
+                        "description": "invalid id"
+                    }
+                   
+                    
+                }
+            }
+        },
+        "/Api/v1/adminDefaultcredentials": {
+            "get": {
+                "tags": [
+                    "admin default credentials "
+                ],
+                "summary": "default credentials for admin to login, he can decide to change it when he is logged in  password='Admin'",
+                "responses": {
+                    "200": {
+                        "description": "this are all request ",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "admin has been set up already"
+                    }
+                   
+                }
+            }
+        },
+        "/Api/v1/editRequest/{id}": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "post each edited request by user  ",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "type": "string",
+                        "name": "message",
+                        "description": "ID to save edited request request",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "name": "id",
+                        "description": "ID of edited request"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "this are all request ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                    "404": {
+                        "description": "no request found"
+                    },
+                    "400": {
+                        "description": "invalid id"
+                    }
+                }
+            }
+        },
+        "/Api/v1/resetClientToken/{token}": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "security":{
+                    "bearerAuth":[]
+                },
+                "summary": "an automatic route that wiil bw call once an accesstoken expires  ",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "name": "token",
+                        "description": "token for refreshing access token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok ",
+                        "schema": {
+                            "$ref": "#/definitions/request"
+                        }
+                    },
+                  
+                    "400": {
+                        "description": "invalid token"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user": {
+            "type": "object",
+            "properties": {
+                "userName": {
+                    "type":"string",
+                    "required":true,
+                    " unique": true
+                },
+                "email": {
+                    "type":"string",
+                     "required":true,
+                     "unique": true
+                },
+                "password": {
+                    "type":"string",
+                    "required":true
+                },
+                "confirm_password": {
+                    "type":"string",
+                    "require":true
+                    
+                },
+                
+                "userType": {
+                    "type":"string",
+                    "require":true
+                    
+                }
+            }
+        }
+        ,
+            "request": {
+                "type": "object",
+                "properties": {
+                    "user_id":{
+                        "type":"string",
+                        "required":true
+                    },
+                    "message":{
+                        "type":"string",
+                        "required":true
+                        },
+                        "status":{
+                            "type":"string",
+                            "required":true
+                            }
+                }
+            }
+    }
+}

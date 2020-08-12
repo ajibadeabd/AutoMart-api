@@ -6,14 +6,16 @@ var router = express.Router();
 const userController = require('../src/controller/userController')
 const carController = require('../src/controller/carController')
 const orderController = require('../src/controller/orderController')
+const multer = require('../src/middleware/multer')("picture");
 const jwt = require('jsonwebtoken')
+const upload=require("../src/config/multer")
+
 
 // get all cars with same  body type  --16
 
-router.get(
+router.post(
   '/car/body_type/All'
   ,passport.authenticate('jwt',{session:false}),
-authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
  carController.getAllCarsBodyType);
 
 
@@ -23,6 +25,7 @@ router.post(
   '/car',
   passport.authenticate('jwt',{session:false}),
 authorize([Role.admin,Role.superAdmin,Role.userSeller]),
+upload.array('image'),
 carController.createCar);
 
 //get all available cars  --4
@@ -33,10 +36,10 @@ authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
   carController.getAvailableCars)
 
 //getAvailableCarsWithInAPriceRange --5
-router.get(
+router.post(
   '/car/price',
   passport.authenticate('jwt',{session:false}),
-authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
+// authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
    carController.getAvailableCarsWithInAPriceRange);
 
 
@@ -63,33 +66,31 @@ router.get('/car/:eachCar_Id',passport.authenticate('jwt',{
 router.delete(
   '/car/:eachCar_Id',
   passport.authenticate('jwt',{session:false}), 
-authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
+authorize([Role.userSeller,Role.superAdmin,Role.admin]),
   carController.deleteSpecificCar);
 
 // get all cars   --12
 router.get('/car',passport.authenticate('jwt',{
-  session:false
-}), carController.getAllCars);
+  session:false}),
+// authorize([Role.superAdmin,Role.admin]),
+ carController.getAllCars);
 
 //get all new available manufacturer cars --13
 router.get(
   '/manufaturerCar/new/available',
   passport.authenticate('jwt',{session:false}),
-authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
   carController.getManAvailableNew);
 
 // get all used available manufacturer cars  --14
 router.get(
   '/manufaturerCar/used/available',
   passport.authenticate('jwt',{session:false}),
-authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
   carController.getManAvailableUsed);
 
 // get all  available manufacturer cars  --15
 router.get(
   '/manufaturerCar/available',
   passport.authenticate('jwt',{session:false}),
-authorize([Role.userBuyer,Role.userSeller,Role.superAdmin,Role.admin]),
    carController.getManAvailable);
 
 
