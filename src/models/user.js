@@ -9,12 +9,10 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
+    trim: true,
+    required: [true, "Email is required"],
     unique: true,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please add a valid email",
-    ],
+    match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
   },
   password: {
     type: String,
@@ -22,10 +20,7 @@ const UserSchema = new Schema({
   
   },
 
-  token: {
-    type: String,
-    // required: true,
-  },
+ 
   role: {
     type: String,
     enum: ["userSeller","userBuyer", "admin","superAdmin"],
@@ -35,7 +30,8 @@ const UserSchema = new Schema({
     type: Number,
     default: 0
   },
-
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   status: {
     type: Number,
     default: 0
@@ -45,10 +41,10 @@ const UserSchema = new Schema({
     default: Date.now,
   },
 
-  // isEmailVerified: {
-  //   type: Boolean,
-  //   default: false
-  // }
+  isEmailVerified: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // Encrypt password using bcrypt

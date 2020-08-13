@@ -3,8 +3,6 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 const userController = require('../src/controller/userController')
-const carController = require('../src/controller/carController')
-const orderController = require('../src/controller/orderController')
 
 /* GET home page. */
 
@@ -22,5 +20,10 @@ router.post(
 router.post(
   '/signIn',
    userController.login);
-
+   // forget password
+router.post("/forgot_password",  userController.forgotPassword);
+//verify email
+router.post("/verify_email/:token",  userController.verifyEmail);
+// reset password
+router.post('/reset_password/:token', userController.resetPassword);
 module.exports=router

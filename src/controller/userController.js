@@ -19,6 +19,19 @@ class userController{
         let   {data,success,status,message} = await userServices.login(req.body,res)
     res.status(status).json({message, data,success});
     }
+    async resetPassword(req,res){
+        let   {data,success,status,message} = await userServices.resetPassword(req,res)
+    res.status(status).json({message, data,success});
+    }
+
+    async forgotPassword(req,res){
+        let   {data,success,status,message} = await userServices.forgotPassword(req.body,res)
+    res.status(status).json({message, data,success});
+    }
+    async verifyEmail(req,res){
+        let   {data,success,status,message} = await userServices.verifyEmail(req,res)
+    res.status(status).json({message, data,success});
+    }
 
 }
 
