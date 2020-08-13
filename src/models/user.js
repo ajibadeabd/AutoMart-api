@@ -28,7 +28,7 @@ const UserSchema = new Schema({
   },
   block: {
     type: Number,
-    default: 0
+    default: 1
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,

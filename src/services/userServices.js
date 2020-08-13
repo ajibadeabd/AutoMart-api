@@ -90,17 +90,18 @@ class userServices{
           const isCorrect = await bcrypt.compare(data.password, user.password);
           // console.log(user.isEmailVerified)
           if(!user.isEmailVerified) return new CustomError("Account not verify pls verify your email", 400,false); 
+          if(!user.block) return new CustomError("your account has been blocked please contact the Admin", 400,false); 
           if(!isCorrect) return new CustomError("password dont match", 400,false); 
 
         else{ let payload={ userName:user.userName, _id:user._id,role:user.role, email:user.email,}
-        const token = jwt.sign(payload, jwtSecret, {expiresIn: 3600000000000000 });
-          const refreshToken = jwt.sign(payload, jwtSecret, {expiresIn: 3600000000000 });
+        const token = jwt.sign(payload, process.env.jwtSecret, {expiresIn: 600 });
+          const refreshToken = jwt.sign(payload,process.env.jwtSecret, {expiresIn: 360000000000 });
          
     user = _.pick(user, [
       "_id",
       'userName',
       "email",
-      "role",
+      "role","block","isEmailVerified"
     ]);
           return{success:true,  status:200, data:{msg:'you sucessfully logged in',
           // user:user.userName,email:user.email,user_Id:user._id,  role:user.role,
@@ -159,12 +160,25 @@ class userServices{
     let verify = await jwt.decode(id,process.env.jwtSecret)
    if((Date.now()<verify.exp))    return new CustomError(" verification token has expired'");
     let isExist = await User.findById(verify.id)
-   if(isExist.isEmailVerified==true)    return new CustomError(" this a");
-
+   if(!isExist) return new CustomError("you cant verify an account that does not exist");
+   if(isExist.isEmailVerified==true) return new CustomError(" this account has already been verified, proceded to log in");
      isExist.isEmailVerified=true;
      isExist.save()
     return {success:true,status:200,data:null,message:'your account has been verified, please login '}
     
+}
+async ResendVerifyEmail(req,res){
+  let   data=_.pick(req.body,['email'])
+  let isExist =  await User.findOne({email:data.email})
+  if(!isExist) return new CustomError(" You do not have an account with us");
+  const token = jwt.sign({ id: isExist._id,role:isExist.role }, process.env.jwtSecret, { expiresIn: 3600, });
+  const liveUrl = `https://automart.com/verify-email/${token}`;
+  const url = `http://localhost:3000/verify-email/${token}`;
+await new Email(data, liveUrl).verify_email();
+await new Email(data, url).verify_email();
+console.log(token)
+  return {success:true,status:200,data:null,message:'A link to verify your account has been sent '}
+  
 }
 }
 

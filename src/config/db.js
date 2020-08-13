@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // require('../utils/env');
 
-const uri = 'mongodb://localhost/auto-mart';
+const uri = process.env.MONGODB_URI
 
 const dbOptions = {
     useNewUrlParser: true,

@@ -32,7 +32,11 @@ class userController{
         let   {data,success,status,message} = await userServices.verifyEmail(req,res)
     res.status(status).json({message, data,success});
     }
-
+    async ResendVerifyEmail(req,res){
+        let   {data,success,status,message} = await userServices.ResendVerifyEmail(req,res)
+    res.status(status).json({message, data,success});
+    }
+    
 }
 
 module.exports = new userController()
