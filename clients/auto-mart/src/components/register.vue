@@ -8,7 +8,7 @@
         --> <h4 class="green-text">Register </h4>
         <div class="divider"></div>
         
-        <form @submit.prevent="SignIn"> 
+        <form @submit.prevent="SignUp"> 
                      <div class="s10 offset-s1  offset-l3 offset-xl3 offset-m2 col m8 xl6 l6 ">
             <div class="card-action  white-text">
                 <!-- <h3 class="center light-blue-text  ">
@@ -18,6 +18,14 @@
                 <div class="orange  other center white-text"> google</div>
                 <div class="facebook   other center light-blue white-text"> Facebook</div>
                
+                <div class="form-field">
+                    <label for="userName">userName</label>
+                     <input type="text"
+                     placeholder="userName"
+                     required=required
+                      v-model="userName" id="userName">
+
+                </div> <br>
                 <div class="form-field">
                     <label for="email">Email</label>
                      <input type="email"
@@ -34,6 +42,15 @@
                       v-model="password" id="password">
 
                 </div> <br>
+                <div class="form-field">
+                    <label for="con_password">confirm password</label>
+                     <input type="password"
+                     placeholder="con_password"
+                     required=required
+                      v-model="con_password" id="con_password">
+
+                </div> <br>
+                
                 
                 <div class="form-field">
                   <button class="btn-large light-blue waves-effects waves-dark"
@@ -46,6 +63,11 @@
             sign In
         </router-link>
                             </div>
+                            <br>
+            <div class='progress'  :class="loading">
+      <div class="indeterminate"></div>
+  </div>
+     
                         
             </div>
         </div>
@@ -70,37 +92,32 @@ export default {
         return{
             email:'',
             password:'',
+            con_password:'',
+            userName:'',
+            loading:'hide',
             
 
         }
     },
     methods:{
-        ...mapActions(['signIn']),
-        SignIn(){
+        ...mapActions(['signUp']),
+        SignUp(){
             let userInfo={
-                // userName:this.userName,
+                userName:this.userName,
                 password:this.password,
+                con_password:this.con_password,
                 email:this.email,
             }
-this.signIn(userInfo)
+                this.loading=''            
+this.signUp(userInfo)
 .then(res=>{
-    if (res.data.success) {
-        if(res.data.user.userType==='Admin' ) { 
-        this.$router.push('/admin-DashBoard')
-        }else{
-        this.$router.push('/dashboard')
-
-        }
-    }
-})
-.catch(err=>{
-  console.log(err)
-  this.$store.commit('auth_error',err)
-})
-
-       
-        }
-        },
+    if (res.data.success) 
+    {
+        this.$router.push('/login')}})
+        .catch((err)=>{
+                this.loading='hide'            
+        })
+        }},
 mounted(){
   
 },

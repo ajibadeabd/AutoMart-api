@@ -33,20 +33,17 @@ export default new Vuex.Store({
         async signIn({commit},user) {
             // commit('auth_request');
            try{
-            let res= await Api().post('/login',user)
+            let res= await Api().post('/signIn',user)
             if(res.data.success){
-                const token = res.data.token;
-                const rToken = res.data.rToken;
-                
-                const msg = res.data.msg;
-                const user = res.data.user;
+                const token = res.data.data.token;
+                const refreshToken = res.data.data.refreshToken;
+                const msg = res.data.data.message;
+                const user = res.data.data.user;
                 localStorage.setItem('token',token);
-                localStorage.setItem('rToken',rToken);
+                localStorage.setItem('refreshToken',refreshToken);
                 commit("auth_success",token)
-                // console.log(user)
                 commit("profile",user)
                 axios.defaults.headers.common["Authorization"] = token;
-
                     }
                     return res;
            }catch(err){
@@ -56,10 +53,11 @@ export default new Vuex.Store({
         async signUp({commit},user) {
             commit('register_request');
             try{
-                let res= await Api().post('/register',
-            user)
-       if (res.data.success !== undefined) {
+                let res= await Api().post('/signUp',user)
+       if (res.data.success) {
            commit('register_success',res)
+
+           console.log(res.data.message)
             
        }
        return res;
@@ -93,10 +91,8 @@ export default new Vuex.Store({
         },
         register_success(state,res){
             state.status = 'success'
-            state.success = res.data.msg
+            state.success = res.data.message
             state.error=null
-          
-            state.success = res.data.msg
         },
         auth_request(state){
             state.status = 'loading'
@@ -113,13 +109,13 @@ export default new Vuex.Store({
             state.error=null
         },
         auth_error(state,err){
-            state.error=err.response.data.msg
+            state.error=err.response.data.message
             state.success=null
 
 
         },
         register_error(state,err){
-            state.error= err.response.data.msg
+            state.error= err.response.data.message
         },
         request_success(state,msg){
             state.success= msg

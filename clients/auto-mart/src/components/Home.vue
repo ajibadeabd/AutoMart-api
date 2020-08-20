@@ -79,24 +79,64 @@
 <!-- second col -->
 
 <div class="col m12  l9 xl9">
-  <div class="row  ">
+  <div class="row hide-on-small-only  ">
     
-    <div class="col s8  m8 l8 xl8">
+    <div class="col s8  m12 l12 xl12">
     
-    <div class=" d card">
-      d
+    <div class=" d  firstImage card">
+      
+      <img src="https://static.jiji.ng/static/img/banners/main_how_to_buy.jpg" 
+      class="responsive-img d firstImage" alt="">
+      
     </div>
+
 
     </div>
   
-    <div class="col  s4 m4 l4 xl4">
-       <div class=" d card">
-      d
-    </div>
-    </div>
+    
    
   </div>
   <div class="row ads">
+  <div class="col c s4 m3 l2 xl2">
+    
+    <div class="grey center lighten-2">
+      <img src="https://static.jiji.ng/static/img/main-page/girls.png" class="responsive-img" alt="">
+
+<span class="center">phone</span>
+    </div>
+  </div>
+  <div class="col c s4 m3 l2 xl2">
+    
+    <div class="grey center lighten-2">
+      <img src="https://static.jiji.ng/static/img/main-page/girls.png" class="responsive-img" alt="">
+
+<span class="center">phone</span>
+    </div>
+  </div>
+  <div class="col c s4 m3 l2 xl2">
+    
+    <div class="grey center lighten-2">
+      <img src="https://static.jiji.ng/static/img/main-page/girls.png" class="responsive-img" alt="">
+
+<span class="center">phone</span>
+    </div>
+  </div>
+  <div class="col c s4 m3 l2 xl2">
+    
+    <div class="grey center lighten-2">
+      <img src="https://static.jiji.ng/static/img/main-page/girls.png" class="responsive-img" alt="">
+
+<span class="center">phone</span>
+    </div>
+  </div>
+  <div class="col c s4 m3 l2 xl2">
+    
+    <div class="grey center lighten-2">
+      <img src="https://static.jiji.ng/static/img/main-page/girls.png" class="responsive-img" alt="">
+
+<span class="center">phone</span>
+    </div>
+  </div>
   <div class="col c s4 m3 l2 xl2">
     
     <div class="grey center lighten-2">
@@ -149,6 +189,76 @@
 </div>
 <div class="row">
   <h4 class="blue-text center">Trending Ads</h4>
+    <div class="col s6 m4">
+      <div class="card">
+        <div class="card-image">
+          <div class="grey lighten-1 qty ">6</div>
+          <img src="https://static.jiji.ng/static/img/main-page/girls.png">
+          <!-- <span class="card-title">Card Title</span> -->
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p>  Face shield</p>
+          <p>  <strong>price:</strong> $3000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s6 m4">
+      <div class="card">
+        <div class="card-image">
+          <div class="grey lighten-1 qty ">6</div>
+          <img src="https://static.jiji.ng/static/img/main-page/girls.png">
+          <!-- <span class="card-title">Card Title</span> -->
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p>  Face shield</p>
+          <p>  <strong>price:</strong> $3000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s6 m4">
+      <div class="card">
+        <div class="card-image">
+          <div class="grey lighten-1 qty ">6</div>
+          <img src="https://static.jiji.ng/static/img/main-page/girls.png">
+          <!-- <span class="card-title">Card Title</span> -->
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p>  Face shield</p>
+          <p>  <strong>price:</strong> $3000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s6 m4">
+      <div class="card">
+        <div class="card-image">
+          <div class="grey lighten-1 qty ">6</div>
+          <img src="https://static.jiji.ng/static/img/main-page/girls.png">
+          <!-- <span class="card-title">Card Title</span> -->
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p>  Face shield</p>
+          <p>  <strong>price:</strong> $3000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s6 m4">
+      <div class="card">
+        <div class="card-image">
+          <div class="grey lighten-1 qty ">6</div>
+          <img src="https://static.jiji.ng/static/img/main-page/girls.png">
+          <!-- <span class="card-title">Card Title</span> -->
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p>  Face shield</p>
+          <p>  <strong>price:</strong> $3000</p>
+        </div>
+      </div>
+    </div>
     <div class="col s6 m4">
       <div class="card">
         <div class="card-image">
@@ -296,6 +406,12 @@ margin-bottom: 3px;
 }
 .card{
   border-radius: 7px;
+}
+.firstImage{
+
+
+  width:100% !important;
+  height:100% !important;
 }
 .qty{
   width: 19px;

@@ -36,6 +36,10 @@ class userController{
         let   {data,success,status,message} = await userServices.ResendVerifyEmail(req,res)
     res.status(status).json({message, data,success});
     }
+    async fetchProfile(req,res){
+        let   {data,success,status,message} = await userServices.fetchProfile(req,res)
+    res.status(status).json({message, data,success});
+    }
     
 }
 

@@ -23,7 +23,18 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta:{
+        requiresAll:true
+    }
+    },
+    {
+      path: '/error',
+      name: 'Home',
+      component: Home,
+      meta:{
+        requiresAll:true
+    }
     },
     {
       path: '/postAds',
@@ -145,8 +156,16 @@ if(store.getters.isLoggedIn){
     next("/login")
 
   }
-  }else{
-next()
+  }
+  else if(to.matched.some(record=>record.meta.requiresAll)){
+    if('a'=='a'){
+        next()
+    
+    }else{
+        next();
+    }
+    }else{
+next('/error')
 }
 
 });

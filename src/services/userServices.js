@@ -18,28 +18,29 @@ class userServices{
     async  signUp(data,res){
       data=_.pick(data,['email','password','con_password','userName'])
 
-      if(!data.email) return new CustomError("enter your email", 400,false);
+      if(!data.email) return new  CustomError("enter your email", 400,false);
       if(!data.password) return new CustomError("enter your password", 400,false);
-      if(!data.con_password) return new CustomError("please confirm  your password", 400,false);
+      if(!data.con_password) return new  CustomError("please confirm  your password", 400,false);
       if(!data.userName) return new CustomError("enter your userName", 400,false); 
      if(data.password  !== data.con_password) return new CustomError("password dont match", 400,false);  
-     if(await User.findOne({userName:data.userName})) return new CustomError("userName already Taken", 400,false); 
-      if(await User.findOne({email:data.email})) return new CustomError("email already exist", 400,false); 
+     if(await User.findOne({userName:data.userName})) return new  CustomError("userName already Taken", 400,false); 
+      if(await User.findOne({email:data.email})) return new  CustomError("email already exist", 400,false); 
       
       else{
         const newUser= await new User(data)
         newUser.email= data.email.trim('')
         const token = jwt.sign({ id: newUser._id,role:newUser.role },  process.env.jwtSecret, { expiresIn: 3600, });
+        await  newUser.save()
         const liveUrl = `https://automart.com/verify-email/${token}`;
         const url = `http://localhost:3000/verify-email/${token}`;
       await new Email(data, liveUrl).verify_email();
       await new Email(data, url).verify_email();
         // send mail to user email
-                  await  newUser.save()
                   return{status:201,success:true,data:{
-                      token:newUser.token,
-                      msg:'you have succefully registerd, a message has been sent to your mail, please click on the link verify your email '
-                    }
+                      token:newUser.token
+                       },
+                       message:'you have succefully registerd, a message has been sent to your mail, please click on the link verify your email '
+                  
                   }
                   
       }
@@ -71,10 +72,10 @@ class userServices{
                   return{
                     status:201,
                     success:true,
+                    message:'you have succefully registerd, a message has been sent to your mail, please click on the link verify your email ',
                     data:{
                       token:newUser.token,
-                      msg:'you have succefully registerd, a message has been sent to your mail, please click on the link verify your email '
-                    }
+                       }
                   }
                   
       }
@@ -90,12 +91,14 @@ class userServices{
           const isCorrect = await bcrypt.compare(data.password, user.password);
           // console.log(user.isEmailVerified)
           if(!user.isEmailVerified) return new CustomError("Account not verify pls verify your email", 400,false); 
-          if(!user.block) return new CustomError("your account has been blocked please contact the Admin", 400,false); 
-          if(!isCorrect) return new CustomError("password dont match", 400,false); 
+          if(user.block) return new CustomError("your account has been blocked please contact the Admin", 400,false); 
+          if(!isCorrect)  return new CustomError("password incorrect", 400,false);
+
+          // return  CustomError("password dont match",false, 400); 
 
         else{ let payload={ userName:user.userName, _id:user._id,role:user.role, email:user.email,}
-        const token = jwt.sign(payload, process.env.jwtSecret, {expiresIn: 600 });
-          const refreshToken = jwt.sign(payload,process.env.jwtSecret, {expiresIn: 360000000000 });
+        const token = jwt.sign(payload, process.env.jwtSecret, {expiresIn: 3600000000000000000  });
+          const refreshToken = jwt.sign(payload,process.env.jwtSecret, {expiresIn: 3600000000000000000 });
          
     user = _.pick(user, [
       "_id",
@@ -103,9 +106,9 @@ class userServices{
       "email",
       "role","block","isEmailVerified"
     ]);
-          return{success:true,  status:200, data:{msg:'you sucessfully logged in',
+          return{success:true,  status:200, data:{message:'you sucessfully logged in',
           // user:user.userName,email:user.email,user_Id:user._id,  role:user.role,
-          ...user,
+          user,
           token:`Bearer ${token}`, refreshToken:`Bearer ${refreshToken}`,}} 
         }
         
@@ -180,6 +183,12 @@ console.log(token)
   return {success:true,status:200,data:null,message:'A link to verify your account has been sent '}
   
 }
+async fetchProfile(req,res){
+  let profile =  await User.findById(req.user.id,{__v:0,password:0})
+  if(!profile ||  profile.length==0) return new CustomError(" error occur while fetching profile");
+  return {success:true,status:200,data:profile,message:'Profile fetch '}  
+}
+
 }
 
 

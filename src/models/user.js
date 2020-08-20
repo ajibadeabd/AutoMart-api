@@ -26,9 +26,14 @@ const UserSchema = new Schema({
     enum: ["userSeller","userBuyer", "admin","superAdmin"],
     default: "userBuyer"
   },
+  photoURL: {
+    type: String,
+    default:
+      "https://f0.pngfuel.com/png/340/956/profile-user-icon-png-clip-art-thumbnail.png",
+  },
   block: {
     type: Number,
-    default: 1
+    default: 0
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,

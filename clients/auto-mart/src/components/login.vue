@@ -46,6 +46,10 @@
             sign Up
         </router-link>
                             </div>
+                                  <br>
+            <div class='progress'  :class="loading">
+      <div class="indeterminate"></div>
+  </div>
                         
             </div>
         </div>
@@ -70,6 +74,7 @@ export default {
         return{
             email:'',
             password:'',
+            loading:'hide'
             
 
         }
@@ -78,29 +83,20 @@ export default {
         ...mapActions(['signIn']),
         SignIn(){
             let userInfo={
-                // userName:this.userName,
                 password:this.password,
                 email:this.email,
             }
+            this.loading=''
 this.signIn(userInfo)
 .then(res=>{
     if (res.data.success) {
-        if(res.data.user.userType==='Admin' ) { 
-        this.$router.push('/admin-DashBoard')
-        }else{
         this.$router.push('/dashboard')
-
-        }
     }
-})
-.catch(err=>{
-  console.log(err)
-  this.$store.commit('auth_error',err)
+}).catch(err=>{
+            this.loading='hide'
 })
 
-       
-        }
-        },
+} },
 mounted(){
   
 },
