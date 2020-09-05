@@ -37,6 +37,6 @@ export default {
 }
 div.red{
     margin: 0px;
-    padding: opx;
+    padding: 0px;
 }
 </style>

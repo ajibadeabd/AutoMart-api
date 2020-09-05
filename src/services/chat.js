@@ -33,3 +33,16 @@ class chat{
 
 
 module.exports = new chat()
+
+// const userSchema = (joi) => ({
+//     userSchema: joi.object().keys({
+//       name: joi.string().regex(/^[a-bA-B]+/).required(),
+//       lastName: joi.string().regex(/^[a-bA-B]+/).required(),
+//       email: joi.string().email().required(),
+//       phoneNumber: joi.string().regex(/^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/),
+//       creditCard: joi.string().creditCard().required(),
+//       membership: joi.number().creditCard()
+//     })
+//   })
+  
+//   module.exports = userSchema
