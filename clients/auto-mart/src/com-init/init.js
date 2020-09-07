@@ -16,11 +16,7 @@ export default {
         $('.slider').slider({
         });
         $('.scrollspy').scrollSpy();
-        $('.tabs').tabs({
-            swipeable:true,
-            responsiveThreshold:Infinity,
-            duration:1
-        });
+        $('.tabs').tabs();
         $('.tooltipped').tooltip();
         $(".modal").modal({
                 dismissible: true,

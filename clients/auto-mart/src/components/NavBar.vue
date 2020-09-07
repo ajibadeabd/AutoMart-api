@@ -84,6 +84,31 @@
            <i class="blue-text fa fa-home"></i> home
           </router-link>
         </li>
+           <li  >
+          <router-link  class="  blue-text" to='/seller-page'>
+           seller-page
+          </router-link>
+        </li>
+        <li >
+          <router-link  class="  blue-text" to='/postAds'>
+            postAds
+          </router-link>
+        </li>
+        <li >
+          <router-link  class="  blue-text" to='/postAds'>
+            postAds
+          </router-link>
+        </li>
+        <li>
+          <router-link class="blue-text" to='/profile-message'>
+               profile-message
+          </router-link>
+        </li>
+         <li>
+          <router-link class="blue-text" to='/profilePage'>
+                profilePage
+          </router-link>
+        </li>
         <li>
           <router-link v-if="!isLoggedIn" class="blue-text" to='/login'>
            <i class="fa blue-text fa-sign-in"></i> login
@@ -101,18 +126,7 @@
            <i class="fa fa-user-plus blue-text" aria-hidden="true"></i> about
           </router-link>
         </li>
-          <li  >
-          <router-link  class="  blue-text" to='/dashboard'>
-           <i class="fa center blue-text fa-user-plus" aria-hidden="true"></i> Chect request status
-          </router-link>
-        </li>
-        <li  v-if="isUser" >
-     <div class="divider"></div>
-          <router-link  class="  blue-text" to='/maintainance'>
-           <i class="material-icons center blue-text " 
-           aria-hidden="true">settings</i> make a request
-          </router-link>
-        </li>
+        
        <li v-if="isAdmin" >
           <div class="divider"></div>
           <router-link     class="  blue-text"

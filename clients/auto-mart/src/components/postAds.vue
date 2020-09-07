@@ -51,10 +51,15 @@
         </div>
         </div>       
 <br>
-         <div class="col  s12 m16 l6 xl6">
+         
+    </div>
+    
+    <div class="col offset-s4 offset-m4 offset-l4 offset-xl4 s4 m4 l4 xl4">
+        <br>
+    <br>
+    <br>
              <input type="submit" value="post ads" class="btn  lighten-3">
          </div>
-    </div>
     </div>
 </div>
 
@@ -63,7 +68,9 @@
     </div>
 </template>
 <script>
+import initMaterializeComp from '../com-init/init'
 export default {
+  mixins: [initMaterializeComp],
     data(){
         return{
 

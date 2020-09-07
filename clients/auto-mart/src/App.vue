@@ -38,12 +38,6 @@ error,
      .then(res=>{
        if (res.data.userType) {
      this.$store.commit('profile',res.data)
-
-        // this.$store.state.user=res.data
-        // console.log(this.$store.state.user.userType)
-        // console.log(this.$store.getters.isLoggedIn)
-        // console.log(this.$store.getters.isAdmin)
-        // console.log(res.data.userType)
        }
      }).catch(err=>{
        console.log(err)

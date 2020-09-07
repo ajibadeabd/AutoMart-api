@@ -1,11 +1,8 @@
 <template>
-    <div class="red center lighten-2">
+    <div class="red center col s12 m12 l12 xl12 lighten-2">
 
 
-{{error}}
-
-
-    </div>
+{{error}}</div>
 </template>
 <script>
 export default {
@@ -35,7 +32,6 @@ export default {
 .red{
    border-radius: 5px;
     font-size: 3vh;
-    margin: 20px ;
     text-transform: uppercase;
 }
 div.red{

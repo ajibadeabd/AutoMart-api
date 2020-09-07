@@ -70,15 +70,7 @@ export default {
     },
     components:{SD},
     created(){
-        Api().get('/getAllRequestsByUser')
-.then(res=>{
-  this.requests=res.data.request
-//   console.log(res.data.request)
-// this.$store.commit('request_success',res.data.msg)
-
-}).catch(err=>{
-  console.log(err)
-})
+      
     }
 }
 </script>

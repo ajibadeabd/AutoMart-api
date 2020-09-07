@@ -39,22 +39,34 @@ const router = new Router({
     {
       path: '/postAds',
       name: 'postAds',
-      component: postAds
+      component: postAds,
+      meta:{
+        requiresAuth:true
+    }
     },
     {
       path: '/profilePage',
       name: 'profilePage',
-      component:profilePage
+      component:profilePage,
+      meta:{
+        requiresAuth:true
+    }
     }, 
     {
       path: '/profile-message',
       name: 'profileMessage',
-      component: profileMessage
+      component: profileMessage,
+      meta:{
+        requiresAuth:true
+    }
     },
     {
       path: '/seller-page',
       name: 'seller',
-      component: seller
+      component: seller,
+      meta:{
+        requiresAuth:true
+    }
     },
 
     {
