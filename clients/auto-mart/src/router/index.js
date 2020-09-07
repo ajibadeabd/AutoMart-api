@@ -14,7 +14,7 @@ import postAds from '@/components/postAds.vue'
 import profileMessage from '@/components/profile-message.vue'
 import seller from '@/components/seller.vue'
 import profilePage from '@/components/profilePage.vue'
-
+import product from '@/components/product.vue'
 
 Vue.use(Router)
 
@@ -122,6 +122,14 @@ const router = new Router({
       component: adminDashBoard,
       meta:{
         requiresAdmin:true
+    }
+    },
+    {
+      path: '/product',
+      name: 'product',
+      component: product,
+      meta:{
+        requiresAuth:true
     }
     },
     

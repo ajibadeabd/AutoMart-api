@@ -336,6 +336,10 @@
           <img src="https://static.jiji.ng/static/img/main-page/girls.png">
           <!-- <span class="card-title">Card Title</span> -->
           <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+<router-link to='product'>
+  <i class="material-icons">more-vert</i>
+</router-link>
+
         </div>
         <div class="card-content">
           <p>  Face shield</p>
