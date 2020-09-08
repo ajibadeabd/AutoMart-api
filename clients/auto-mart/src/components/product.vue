@@ -66,14 +66,16 @@ export default {
     border-radius: 4px;
 }
 .logo{
-    border-radius: 200px;
-    height: 100px;
+    border-radius: 600vh;
+    padding-top: 9vh;
+    height: 160px;
     font-size: 50px;
 
 }
 .feed{
     font-size: 24px;
     border-radius: 2px;
+    margin-top: 5.5vh;
 }
 .price{
     height: 50px;
