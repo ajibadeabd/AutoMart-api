@@ -1,6 +1,6 @@
 <template>
     <div>
-<div class="row">
+<div class="container  row">
     <div class="col m12 s12 l6 xl6">
         <div class="row">
              <div class="col card">
@@ -15,10 +15,14 @@
           <i class="material-icons right">more_vert</i></span>
       <p><strong>Price</strong>:3000</p>
       <p>Owner:kord</p>
+      <br>
       <div class="divider"></div>
+      <br>
       <p class='green col white-text phone'>
           <i class="material-icons">phone</i>
       show contact</p>
+
+<br>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
@@ -32,9 +36,11 @@
             <div class="col m12 s12 l12  card">
                 <div class="green center  white-text price ">#2,000</div>
                 <br>
-                <div class="col red logo offset-s4 offset-m4 offset-l4 
+                <div class="col   offset-s4 offset-m4 offset-l4 
                 offset-xl4 white-text ligthen-1 center s4 m4 l4 xl4 ">
-                    N
+                    <div class="red logo">
+                        N
+                    </div>
 
                 </div>
                 
@@ -67,8 +73,9 @@ export default {
 }
 .logo{
     border-radius: 600vh;
-    padding-top: 9vh;
-    height: 160px;
+    padding-top: 4vh;
+    height: 150px;
+    max-width: 150px;
     font-size: 50px;
 
 }
@@ -82,5 +89,8 @@ export default {
     font-size: 30px;
     border-radius: 2px;
 
+}
+.card{
+    margin-right:33px;
 }
 </style>
