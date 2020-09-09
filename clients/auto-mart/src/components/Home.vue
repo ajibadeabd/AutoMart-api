@@ -335,16 +335,21 @@
           <div class="grey lighten-1 qty ">6</div>
           <img src="https://static.jiji.ng/static/img/main-page/girls.png">
           <!-- <span class="card-title">Card Title</span> -->
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-<router-link to='product'>
-  <i class="material-icons">more-vert</i>
+          <a class="btn-floating halfway-fab waves-effect waves-light red">
+            <!-- <i class="material-icons">add</i> -->
+            <router-link class="center router" to='product'>
+  <i class=" center material-icons">more_vert</i>
 </router-link>
+            </a>
+
 
         </div>
         <div class="card-content">
           <p>  Face shield</p>
           <p>  <strong>price:</strong> $3000</p>
+         
         </div>
+        
       </div>
     </div>
   </div>
@@ -423,5 +428,8 @@ margin-bottom: 3px;
 }
 .ads{
   margin: 10px;
+}
+.router{
+  padding-right: 2px;
 }
 </style>
