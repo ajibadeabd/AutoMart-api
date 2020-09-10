@@ -71,11 +71,26 @@
                   show contact</p>
        <p class='  a col s12  green white-text  center phone'>
           <!-- <i class="material-icons">phone</i> -->
+      <router-link class='white-text' to='message'>
       start chat with seller
+      </router-link>
       </p>
                 </div>
                 <div class="col s12 m12 l12 x">
                     
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Type something</label>
+        </div>
+        <div class="input-field col s12">
+      <input value="send" type="submit" class="validate btn-flat white-text btn green">
+    </div>
+      </div>
+    </form>
+  </div>
                 </div>
                 <br>
 
@@ -130,5 +145,9 @@ export default {
 }
 .b{
     margin-right: 10px !important;
+}
+.input{
+    border:1px solid red ;
+
 }
 </style>

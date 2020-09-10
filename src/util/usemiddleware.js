@@ -30,6 +30,9 @@ module.exports=(app)=>{
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(cors(corsOption));
+    // app.get('*',(req,res)=>{
+    //   res.sendFile(path.join(__dirname,'../../public/index.html'))
+    //   })
     app.use('/v1/api', carRouter);
     app.use('/v1/api', paymentRouter);
     app.use('/v1/api', chatRouter);

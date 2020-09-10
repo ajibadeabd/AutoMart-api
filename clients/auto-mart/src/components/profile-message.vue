@@ -120,4 +120,7 @@ export default {
 .message-body{
     padding: 0px 4px 0px 4px;
 }
+.row{
+    margin-top: 0px;
+}
 </style>

@@ -39,37 +39,43 @@
   <div class="col hide-on-med-and-down l3 xl3">
 
     <div class="card">
+     <router-link to='all-Product'>
 <div class="col"><i class="material-icons">phone</i></div>
 <div class="green-text"> <span>accesssories  <br> khdl </span></div>
 <div class="divider"></div>
-     <br>
-<div class="col"><i class="material-icons">phone</i></div>
-<div class="green-text"> <span>accesssories  <br> khdl </span></div>
-<div class="divider"></div>
-     <br>
-<div class="col"><i class="material-icons">phone</i></div>
-<div class="green-text"> <span>accesssories  <br> khdl </span></div>
-<div class="divider"></div>
+     </router-link>
      <br> 
- <div class="col"><i class="material-icons">phone</i></div>
+     <router-link to='all-Product'>
+<div class="col"><i class="material-icons">phone</i></div>
 <div class="green-text"> <span>accesssories  <br> khdl </span></div>
 <div class="divider"></div>
+     </router-link>
      <br> 
-      <div class="col"><i class="material-icons">phone</i></div>
-<div class="green-text"> <span>accesssories  <br> khdl </span></div>
-    <br>     
+     <router-link to='all-Product'>
 <div class="col"><i class="material-icons">phone</i></div>
 <div class="green-text"> <span>accesssories  <br> khdl </span></div>
 <div class="divider"></div>
-     <br>
-<div class="col"><i class="material-icons">phone</i></div>
-<div class="green-text"> <span>accesssories  <br> khdl </span></div>
-<div class="divider"></div>
-     <br>
-<div class="col"><i class="material-icons">phone</i></div>
-<div class="green-text"> <span>accesssories  <br> khdl </span></div>
-<div class="divider"></div>
+     </router-link>
      <br> 
+     <router-link to='all-Product'>
+<div class="col"><i class="material-icons">phone</i></div>
+<div class="green-text"> <span>accesssories  <br> khdl </span></div>
+<div class="divider"></div>
+     </router-link>
+     <br> 
+     <router-link to='all-Product'>
+<div class="col"><i class="material-icons">phone</i></div>
+<div class="green-text"> <span>accesssories  <br> khdl </span></div>
+<div class="divider"></div>
+     </router-link>
+     <br> 
+     <router-link to='all-Product'>
+<div class="col"><i class="material-icons">phone</i></div>
+<div class="green-text"> <span>accesssories  <br> khdl </span></div>
+<div class="divider"></div>
+     </router-link>
+     <br> 
+     
       
 
     </div>

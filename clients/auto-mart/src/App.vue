@@ -67,7 +67,7 @@ error,
 
   created(){
    if(this.isLoggedIn){
-    this.fetchProfile()
+    // this.fetchProfile()
 
 }else{
   console.log('go and reg')
