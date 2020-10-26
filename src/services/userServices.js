@@ -64,6 +64,7 @@ class userServices{
         newUser.role=Role.userSeller
         const token = jwt.sign({ id: newUser._id,role:newUser.role },  process.env.jwtSecret, { expiresIn: 3600, });
         const liveUrl = `https://automart.com/verify-email/${token}`;
+        
         const url = `http://localhost:3000/verify-email/${token}`;
       await new Email(data, liveUrl).verify_email();
       await new Email(data, url).verify_email();

@@ -6,7 +6,7 @@ var logger = require('morgan');
 var usemiddleware = require('./src/util/usemiddleware');
 const errorMiddleware = require('./src/middleware/errorMiddleware');
 const dotenv = require('dotenv')
- dotenv.config()
+ dotenv.config();
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 // require('express-async-errors')
